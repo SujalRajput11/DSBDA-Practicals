@@ -1,0 +1,278 @@
+1.Import REquired Libraries
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+2.READ CSV INTO DATAFRAME
+df= pd.read_csv('Social_Network_Ads.csv')
+df
+
+3.DATA PREPORCESSING
+df.shape
+df.columns
+df.dtypes
+df.info()
+df.describe()
+x=df.iloc[:,[2,3]].values
+x
+y=df.iloc[:,4].values
+y
+
+4.SPLITING DATA INTO 75% TRAINING AND 25%TESTING DATA
+from sklearn.model_selection import train_test_split
+
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=42)
+x_train
+x_test.shape
+y_test
+y_test.shape
+
+5.DATA STANDARDIZATION
+from sklearn.preprocessing import standardScaler
+sc_x=StandardScaler()
+x_train=sc_x.fit_tranform(x_train)
+x_test=sc_x.fit_transform(x_test)
+
+x_train
+
+6.INITIALIZING LOGISTIC REGRESSION MODEL AND TRAINIG THE MODEL
+
+from sklearn.linear_model import LogisticRegression
+classifier=LogisticRegression(random_state=0)
+classifier.fit(x_train,y_train)
+
+
+7.PREDICTION
+y_pred=classifier.predict(x_test)
+y_pred
+y_test
+
+8.CONFUSION MATRIX
+from skleran.metrics import confusion_matrix
+cm=confusion_matrix(y_test,y_pred)
+cm
+
+9.CALCULATING ACCURACY OF MODEL
+from sklearn.metrics import accuracy_score
+accuracy=accuracy_score(y_test,y_pred)*100
+accuracy
+
+10.TRUE POSITIVE:ACTUALLY TRUE ,PREDICTED TRUE
+tp=cm[0,[0]]
+print('True Positive:',tp)
+
+11.False Positive:
+fp=cm[0,[1]]
+print('False Positive:',fp)
+
+12.False Negative:
+fn=cm[1,[0]]
+print('False Negative:',fn)
+
+13.TRUE NEGATIVE:
+tn=cm[1,[1]]
+print('True Negative:',tn)
+
+14.Accuracy
+accuracy_cm=((tp+tn)/(tp+fp+fn+tn))
+print('Accuracy:',accuracy_cm*100)
+
+15.ERROR RATE
+error_rate_cm=((fp+fn)/(tp+fp+fn+tn))
+print('Error Rate:',error_rate_cm*100)
+
+16.PRECISION
+precision_cm=(tp/(tp+fp))
+print('Precision:',precision_cm*100)
+
+17.Recall
+recall_cm=(tp/(tp+fn))
+ print('Sensitivity:',recall_cm*100)
+
+18.Specificity
+specifcity_cm=(tn/(tn+fp))
+print('Specificity:',specificity_cm*100)
+
+-----------------------------------------------------------------------------------------
+
+1. Import Libraries
+python
+Copy code
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+You import important Python libraries:
+
+pandas → for data handling
+
+numpy → for numerical operations
+
+matplotlib.pyplot → for plotting graphs
+
+%matplotlib inline → to show graphs inside the notebook.
+
+2. Read CSV File
+python
+Copy code
+df = pd.read_csv('Social_Network_Ads.csv')
+You load the Social_Network_Ads.csv dataset into a DataFrame called df.
+
+3. Data Preprocessing
+python
+Copy code
+df.shape
+df.columns
+df.dtypes
+df.info()
+df.describe()
+Check the structure of the data: number of rows, columns, data types, missing values, etc.
+
+You choose Age and Estimated Salary as input features (x) and Purchased (yes/no) as the output (y).
+
+4. Split Data into Train and Test
+python
+Copy code
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=42)
+You divide the data:
+
+75% for training
+
+25% for testing
+
+5. Data Standardization
+python
+Copy code
+from sklearn.preprocessing import StandardScaler
+sc_x = StandardScaler()
+x_train = sc_x.fit_transform(x_train)
+x_test = sc_x.transform(x_test)
+Standardization means scaling the data to have mean = 0 and standard deviation = 1.
+
+It helps Logistic Regression to perform better.
+
+(Note: You had a typo standardScaler and fit_tranform → Correct is StandardScaler and fit_transform.)
+
+6. Initialize Logistic Regression and Train
+python
+Copy code
+from sklearn.linear_model import LogisticRegression
+classifier = LogisticRegression(random_state=0)
+classifier.fit(x_train, y_train)
+You create and train a Logistic Regression model on the training data.
+
+7. Make Predictions
+python
+Copy code
+y_pred = classifier.predict(x_test)
+You predict the output (Purchased or not) for the test data.
+
+8. Confusion Matrix
+python
+Copy code
+from sklearn.metrics import confusion_matrix
+cm = confusion_matrix(y_test, y_pred)
+You generate a confusion matrix to see how many predictions are correct and wrong.
+
+(Note: Typo: skleran → correct is sklearn.)
+
+9. Calculate Model Accuracy
+python
+Copy code
+from sklearn.metrics import accuracy_score
+accuracy = accuracy_score(y_test, y_pred) * 100
+You calculate the percentage of correct predictions.
+
+10-18. Detailed Confusion Matrix Analysis
+True Positive (TP) → Correctly predicted YES
+
+False Positive (FP) → Incorrectly predicted YES
+
+False Negative (FN) → Incorrectly predicted NO
+
+True Negative (TN) → Correctly predicted NO
+
+Then you calculate:
+
+Accuracy
+
+Error Rate
+
+Precision
+
+Recall (Sensitivity)
+
+Specificity
+
+❓ Important External Viva Questions (and Simple Answers)
+Q1: What is Logistic Regression?
+Answer:
+Logistic Regression is a Machine Learning algorithm used for classification problems. It predicts whether something belongs to a class (like Yes/No) by calculating probabilities.
+
+Q2: Why did you use StandardScaler?
+Answer:
+Because Logistic Regression works better when the input features (like Age and Salary) are on the same scale. StandardScaler makes them centered around 0.
+
+Q3: What is a Confusion Matrix?
+Answer:
+It is a table showing how many correct and incorrect predictions the model made:
+
+True Positive (TP)
+
+True Negative (TN)
+
+False Positive (FP)
+
+False Negative (FN)
+
+Q4: What is Accuracy?
+Answer:
+Accuracy = (Correct Predictions / Total Predictions) × 100
+It tells how often the model is correct.
+
+Q5: What is Precision and Recall?
+Answer:
+
+Precision: How many selected items were actually correct.
+
+Recall (Sensitivity): How many actual correct items were selected.
+
+Q6: Why did you split the data?
+Answer:
+To train the model on one part and test its performance on unseen data.
+It helps check if the model is generalizing well.
+
+Q7: What was your Accuracy?
+Answer:
+(You can answer whatever value your model gave, like "My model accuracy was around 90%".)
+
+Q8: What if you don't standardize the data?
+Answer:
+Without standardization, the model might be biased towards features that have larger values (like Salary over Age).
+
+Q9: Which library did you use for Logistic Regression?
+Answer:
+I used scikit-learn, specifically sklearn.linear_model.LogisticRegression.
+
+Q10: What is Overfitting?
+Answer:
+Overfitting happens when the model performs well on training data but poorly on new data because it "memorized" the training set.
+
+✨ Tip for you:
+If they ask "Why Logistic Regression, not Linear Regression?"
+Say: "Because output is categorical (Purchased: Yes/No), not continuous numbers."
+
+
+
+
+
+
+
+
+
+
+
+
+

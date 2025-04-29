@@ -1,0 +1,222 @@
+# 1. IMPORT REQUIRED LIBRARIES
+import pandas as pd
+import numpy as np
+
+# 2. LOAD THE DATASET INTO DATAFRAME
+df = pd.read_csv('studentPerformance.csv')
+df
+
+# 3. CHECK DIMENSION OF DATAFRAME
+print(df.shape)
+
+# 4. CHECK THE NUMBER OF NULL VALUES IN EACH COLUMN
+print(df.isnull().sum())
+print(df.isnull())
+
+# 5. HANDLING MISSING/NULL VALUES
+
+# Fill missing math scores using interpolation
+df['math_score'] = df['math_score'].interpolate()
+print(df.isnull().sum())
+
+# Fill placement_score missing values using backward fill
+df['placement_score'] = df['placement_score'].fillna(method='bfill')
+print(df.isnull().sum())
+
+# Correct syntax error in replacing NaN in club_join_date
+df['club_join_date'] = df['club_join_date'].replace(to_replace=np.nan, value='2020')  # Example year
+print(df.isnull().sum())
+
+# Fill placement_offer_count missing values with '1'
+df['placement_offer_count'] = df['placement_offer_count'].fillna('1')
+print(df.isnull().sum())
+
+# 6. CHECK THE DATA TYPES AND CONVERT INTO APPROPRIATE TYPES
+print(df.dtypes)
+
+# Convert datatypes to int64
+df['math_score'] = df['math_score'].astype('int64')
+df['reading_score'] = df['reading_score'].astype('int64')
+df['writing_score'] = df['writing_score'].astype('int64')
+df['placement_score'] = df['placement_score'].astype('int64')
+df['club_join_date'] = df['club_join_date'].astype('int64')
+df['placement_offer_count'] = df['placement_offer_count'].astype('int64')
+
+print(df.dtypes)
+
+# 7. CHECK FOR OUTLIERS
+columns = ['math_score', 'reading_score', 'writing_score', 'placement_score']
+df.boxplot(column=columns)
+
+# Finding outliers
+print(np.where(df['math_score'] < 60))
+print(np.where(df['math_score'] > 80))
+print(np.where(df['reading_score'] < 75))
+print(np.where(df['reading_score'] > 95))
+print(np.where(df['writing_score'] < 60))
+print(np.where(df['writing_score'] > 80))
+print(np.where(df['placement_score'] < 60))
+print(np.where(df['placement_score'] > 100))
+
+# Some conditions for placements
+print(df[(df['placement_score'] < 75) & (df['placement_offer_count'] > 1)])
+print(df[((df['placement_score'] > 75) & (df['placement_score'] <= 85)) & 
+          ((df['placement_offer_count'] > 2) | (df['placement_offer_count'] < 2))])
+print(df[((df['placement_score'] > 85) & (df['placement_offer_count'] < 3))])
+
+# 8. OUTLIER REMOVAL
+new_df1 = df[
+    (df['math_score'] >= 60) & (df['math_score'] <= 80) &
+    (df['reading_score'] >= 75) & (df['reading_score'] <= 95) &
+    (df['writing_score'] >= 60) & (df['writing_score'] <= 80) &
+    (df['placement_score'] >= 60) & (df['placement_score'] <= 100) &
+    (df['club_join_date'] >= 2018) & (df['club_join_date'] <= 2021)
+]
+
+new_df1
+
+# More precise selection based on placement offers
+new_df2 = new_df1[
+    ((new_df1['placement_score'] < 75) & (new_df1['placement_offer_count'] == 1)) |
+    ((new_df1['placement_score'] >= 75) & (new_df1['placement_score'] <= 85) & (new_df1['placement_offer_count'] == 2)) |
+    ((new_df1['placement_score'] > 85) & (new_df1['placement_offer_count'] == 3))
+]
+
+new_df2
+
+print(new_df2.shape)
+
+# 9. FINAL CHECK FOR OUTLIERS REMOVAL
+print(new_df2[(new_df2['math_score'] < 60) | (new_df2['math_score'] > 80)])
+print(new_df2[(new_df2['reading_score'] < 75) | (new_df2['reading_score'] > 95)])
+print(new_df2[(new_df2['writing_score'] < 60) | (new_df2['writing_score'] > 80)])
+-------------------------------------------------------------------------------------------
+
+1. Libraries
+pandas → for dataframes (data handling).
+
+numpy → for math operations and missing values.
+
+python
+Copy code
+import pandas as pd
+import numpy as np
+2. Load Dataset
+Read the CSV file into DataFrame:
+
+python
+Copy code
+df = pd.read_csv('studentPerformance.csv')
+3. Understand the Data
+df.shape → (rows, columns)
+
+df.size → total elements
+
+df.columns → all column names
+
+df.dtypes → data types of each column
+
+df.describe() → basic statistics
+
+df.info() → full structure
+
+4. Handle Missing Values
+Find Missing Values:
+
+python
+Copy code
+df.isnull().sum()
+Fill Missing Values:
+
+Interpolate (Estimate):
+
+python
+Copy code
+df['math_score'] = df['math_score'].interpolate()
+Backward Fill:
+
+python
+Copy code
+df['placement_score'] = df['placement_score'].fillna(method='bfill')
+Replace NaN:
+
+python
+Copy code
+df['club_join_date'] = df['club_join_date'].replace(np.nan, value='2')
+Fill Specific Value:
+
+python
+Copy code
+df['placement_offer_count'] = df['placement_offer_count'].fillna('1')
+5. Change Data Types
+python
+Copy code
+df['math_score'] = df['math_score'].astype('int64')
+(Do the same for reading_score, writing_score, placement_score, etc.)
+
+6. Find and Remove Outliers
+Visual Check (Boxplot):
+
+python
+Copy code
+df.boxplot(['math_score', 'reading_score', 'writing_score', 'placement_score'])
+Detect Outliers (Numerical Check):
+
+python
+Copy code
+np.where(df['math_score'] < 60)
+np.where(df['math_score'] > 80)
+Remove Outliers and Create New Dataset:
+
+python
+Copy code
+new_df1 = df[(df.math_score >= 60) & (df.math_score <= 80) & 
+             (df.reading_score >= 75) & (df.reading_score <= 95) & 
+             (df.writing_score >= 60) & (df.writing_score <= 80) & 
+             (df.placement_score >= 60) & (df.placement_score <= 100) & 
+             (df.club_join_date >= 2018) & (df.club_join_date <= 2021)]
+7. Final Outlier Removal Based on Placement Offers
+python
+Copy code
+new_df2 = new_df1[
+  ((new_df1.placement_score < 75) & (new_df1.placement_offer_count == 1)) |
+  ((new_df1.placement_score >= 75) & (new_df1.placement_score <= 85) & (new_df1.placement_offer_count == 2)) |
+  ((new_df1.placement_score > 85) & (new_df1.placement_offer_count == 3))
+]
+🎯 Key Points to Speak if Asked:
+Concept	Short Answer
+.isnull()	Find missing values
+interpolate()	Estimate missing values smartly
+fillna()	Fill missing values with a fixed value
+astype('int64')	Change datatype to integer
+outlier	Value much different from rest
+boxplot	Graph to detect outliers
+np.where()	Find outliers programmatically
+Why remove outliers?	To prevent misleading results
+⚡ Tips During Viva:
+Speak slowly and confidently.
+
+If you forget, explain simply — "I handled missing values using interpolate and fillna."
+
+If external asks about outliers, show boxplot and np.where usage.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

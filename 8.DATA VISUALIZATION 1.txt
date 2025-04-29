@@ -1,0 +1,160 @@
+In[1]:  import numpy as np 
+	import pandas as pd
+	import matplotlib.pyplot as plt 
+	%matplotlib inline 
+	import seaborn as sns
+
+	#reading csv into data frame
+
+In[2]: 	df = pd.read_csv('train.csv')
+	df
+
+
+
+	#data visualization
+
+
+In[3]:  import seaborn as sns
+	sns.distplot(df['Pclass'])
+
+
+In[4]: sns.distlpot(df['Age'])
+
+
+In[5]: sns.distplot(df['Age'], bins=40)
+
+
+
+In[6]: sns.distplot(df['Age']), bins=20, kde=False , rug=True)
+
+
+In[7]: sns.jointplot(x=df['Age'], y=df['Fare'],kind='scatter')
+
+
+
+In[8]: sns.jointplot(x=df['Age'], y=df['Fare'],kind='hex')
+
+
+In[9]: sns.pairplot(df)
+
+
+In[10]: sns.barplot(x = df['Sex'], y=df['Fare'])
+
+
+In[11]: sns.countplot(df['Pclass'])
+
+In[24]: sns.distplot(df['Fare'],hist=True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#EXPLAINATION:
+	The code above is a Python script used for exploratory data analysis (EDA) and visualization of the Titanic dataset, typically stored in a CSV file named train.csv. It begins by importing essential libraries such as NumPy for numerical operations, Pandas for handling data tables, Matplotlib and Seaborn for data visualization. The %matplotlib inline command ensures that all plots generated appear directly in the notebook. The dataset is read into a DataFrame named df using pd.read_csv(), which loads the Titanic passenger data including details like age, fare, gender, and passenger class.
+
+Following data loading, several plots are created to understand the distribution and relationships in the data. For instance, histograms (histplot) are used to visualize the distribution of age, fare, and passenger class, with options to customize the number of bins and overlay KDE (a smooth curve representing probability density). Rug plots are added for showing individual data points along the x-axis. Joint plots (scatter and hexbin) are used to analyze the relationship between two continuous variables—Age and Fare—while pair plots show relationships between all numerical features at once.
+
+Additionally, bar plots are used to compare the average fare paid by males and females, and count plots are used to count how many passengers fall into each class. These visualizations help uncover patterns such as which class paid more, how age is distributed among passengers, and how Fare relates to Age. Throughout, the code includes some minor syntax issues (like distlpot instead of histplot and improper parentheses), which must be corrected for it to run smoothly. Overall, this code provides a solid base for understanding the Titanic dataset visually before building any predictive models.
+
+
+Q1: What is the use of pandas in this code?
+A: Pandas is used to read and handle data from CSV files and organize it in table format.
+
+Q2: What does %matplotlib inline do?
+A: It makes sure that all graphs appear right below the code cell in a Jupyter notebook.
+
+Q3: What is a histogram?
+A: A histogram is a graph that shows the frequency (count) of data in different ranges or "bins".
+
+Q4: What is KDE in seaborn plots?
+A: KDE (Kernel Density Estimation) draws a smooth curve to estimate the distribution of data.
+
+Q5: What is a rug plot?
+A: A rug plot adds small lines at the bottom of a graph to show the exact positions of data points.
+
+Q6: What is the difference between scatter and hex plots in jointplot?
+A:
+
+scatter shows each individual point.
+
+hex groups points into hexagons for better visibility when many points overlap.
+
+Q7: What does pairplot() show?
+A: It shows how different numeric columns are related to each other using scatterplots and histograms.
+
+Q8: What is the difference between barplot() and countplot()?
+A:
+
+barplot() shows the average of a numeric column for each category (e.g., average Fare by gender).
+
+countplot() shows how many times each category appears (e.g., number of people in each class).
+
+Q9: Why do we use data visualization?
+A: It helps us understand the data better, see patterns, find errors, and prepare for machine learning.
+
+
+
+#COMMENTED CODE
+
+
+# Importing required libraries
+import numpy as np                    # For numerical operations
+import pandas as pd                   # For handling tabular data
+import matplotlib.pyplot as plt       # For plotting graphs
+%matplotlib inline                    # To display plots within the notebook
+import seaborn as sns                 # For advanced visualizations
+
+# Reading the dataset
+df = pd.read_csv('train.csv')         # Load the Titanic dataset into a pandas DataFrame
+df.head()                             # Display the first few rows of the DataFrame
+
+# Data Visualization
+
+# 1. Distribution of Passenger Class (Pclass)
+sns.distplot(df['Pclass'])            # Deprecated - replaced by sns.histplot or sns.displot in newer versions
+
+# 2. Distribution of Age (Incorrect spelling corrected)
+sns.distplot(df['Age'])               # Shows distribution (histogram + KDE) of Age
+
+# 3. Distribution of Age with more bins (More granularity)
+sns.distplot(df['Age'], bins=40)      # 40 bins for better age group separation
+
+# 4. Correcting misplaced parenthesis and parameters
+sns.distplot(df['Age'], bins=20, kde=False, rug=True)  # No KDE curve; includes a rug plot
+
+# 5. Jointplot between Age and Fare (scatter plot)
+sns.jointplot(x='Age', y='Fare', data=df, kind='scatter')  # Visualizes bivariate relationship
+
+# 6. Jointplot with hex bins (better for dense scatter)
+sns.jointplot(x='Age', y='Fare', data=df, kind='hex')      # Uses hexagons instead of points
+
+# 7. Pairplot for entire dataset
+sns.pairplot(df)                       # Plots pairwise relationships and distributions
+
+# 8. Bar plot of Fare by Sex
+sns.barplot(x='Sex', y='Fare', data=df)  # Shows average Fare by Sex
+
+# 9. Count of passengers by class
+sns.countplot(x='Pclass', data=df)     # Counts how many passengers in each class
+
+# 10. Distribution of Fare (corrected syntax)
+sns.distplot(df['Fare'], hist=True)    # Distribution of ticket prices
+
+	

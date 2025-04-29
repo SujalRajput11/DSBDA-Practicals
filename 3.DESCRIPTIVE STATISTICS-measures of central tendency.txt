@@ -1,0 +1,112 @@
+# 1. IMPORT REQUIRED LIBRARIES
+import pandas as pd
+import numpy as np
+
+# 2. READ CSV INTO DATAFRAME
+df = pd.read_csv('iris.csv')
+print(df.head())  # Optional: See first few rows
+
+# 3. DATA PREPROCESSING
+print("Shape of the DataFrame:", df.shape)         # Rows and columns
+print("Null values in each column:\n", df.isnull().sum())  # Checking missing values
+print("\nData Types:\n", df.dtypes)                # Data types
+print("\nInfo about DataFrame:\n")
+df.info()
+
+# Drop 'Id' column if it exists
+if 'Id' in df.columns:
+    df.drop(columns='Id', inplace=True)
+
+print("\nData after dropping 'Id' column:\n", df.head())
+
+# 4. CALCULATING MINIMUM VALUE
+print("\nMinimum values:\n", df.min(numeric_only=True))
+
+# 5. CALCULATING MAXIMUM VALUE
+print("\nMaximum values:\n", df.max(numeric_only=True))
+
+# 6. CALCULATING 1ST QUANTILE (25th percentile)
+print("\n1st Quantile (25th percentile):\n", df.quantile(0.25, numeric_only=True))
+
+# 7. CALCULATING 2ND QUANTILE (50th percentile) (Median)
+print("\n2nd Quantile (50th percentile):\n", df.quantile(0.50, numeric_only=True))
+
+# 8. CALCULATING 3RD QUANTILE (75th percentile)
+print("\n3rd Quantile (75th percentile):\n", df.quantile(0.75, numeric_only=True))
+
+------------------------------------------------------------------------------------------
+
+1. Import Libraries
+python
+Copy code
+import pandas as pd
+import numpy as np
+✅ pandas → for data handling
+✅ numpy → for numeric calculations
+
+2. Load Dataset
+python
+Copy code
+df = pd.read_csv('iris.csv')
+✅ Reads CSV file into a DataFrame.
+
+3. Preprocessing
+Task	Code
+Check shape (rows, columns)	df.shape
+Check missing values	df.isnull().sum()
+Check data types	df.dtypes
+Detailed info	df.info()
+Drop 'Id' column	df.drop(columns='Id', inplace=True) (if exists)
+4. Calculations
+Task	Code
+Minimum value	df.min(numeric_only=True)
+Maximum value	df.max(numeric_only=True)
+25th Percentile (Q1)	df.quantile(0.25, numeric_only=True)
+50th Percentile (Median, Q2)	df.quantile(0.50, numeric_only=True)
+75th Percentile (Q3)	df.quantile(0.75, numeric_only=True)
+🎯 Important Points
+Always use numeric_only=True when dataset has both numbers and strings.
+
+If you use np.min(df) → ❌ error occurs if non-numeric columns (like species) are present.
+
+Better use df.min(), df.max() inside pandas itself.
+
+🎤 Expected Viva Questions & Answers
+Q1. What does df.shape do?
+A: It returns the number of rows and columns of the DataFrame.
+
+Q2. How do you find missing values?
+A: By using df.isnull().sum() which shows count of missing values column-wise.
+
+Q3. What happens if you try np.min(df)?
+A: Error occurs if DataFrame has non-numeric columns like 'species'.
+Better to use df.min(numeric_only=True).
+
+Q4. What is quantile()?
+A: It calculates percentiles:
+
+0.25 → 25th percentile (lower quartile)
+
+0.50 → 50th percentile (median)
+
+0.75 → 75th percentile (upper quartile)
+
+Q5. Why do we drop the 'Id' column?
+A: 'Id' is just a serial number, not useful for analysis. So we drop it.
+
+Q6. Difference between min() and quantile(0)?
+A:
+
+min() → gives minimum value
+
+quantile(0) → also gives minimum but through a statistical approach.
+
+Q7. What does df.info() show?
+A: It shows total columns, non-null values, datatype of each column, and memory usage.
+
+📝 Mini-Revision Tips
+Concept	Shortcut
+Check Nulls	df.isnull().sum()
+Drop Column	df.drop(columns='colname')
+Min/Max	df.min(numeric_only=True), df.max(numeric_only=True)
+Quantiles	df.quantile(q, numeric_only=True)

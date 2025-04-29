@@ -1,0 +1,109 @@
+import pandas as pd 
+import numpy as np
+import matplot.pyplot as plt
+%matplotlib inline
+import seaborn as sns
+
+	#Redaing scv into dataframe
+
+df=pd.read_csv('iris,csv')
+df
+
+
+#Data preprocesssing
+df.shape
+
+df.columns
+
+df.dtypes
+
+df.info()
+
+df.describe()
+
+
+	#Data visualization
+
+sns.ditplot(df['SepslLenghtCm'])
+
+sns.distplot(df['SepalWidthCm'])
+
+sns.distplot(df['PetalLenghtCm'])
+
+sns.distplot(df['PetalWidthCm'])
+
+plt.hist(df[SepalLenghtCm'])
+
+plt.hist(df['SepalWidthCm'])
+
+plt.hist(df['petalLengthCm'])
+
+plt.hist(df['PetalWidthCm'])
+
+sns.boxplot(df['SepalLengthCm'])
+
+sns.boxplot(df['SepalWidthCm'])
+
+sns.boxplot(df[PetalLengthCm'])
+
+sns.boxplot(data=df,x=df['SepalLengthCm'], y=df['Species']
+
+sns.boxplot(data = df, x=df['Species'], y=df['SepalWidthCm'])
+
+sns.boxplot(data=df, x=df['Species'], y=df['PetalWidthCm'])
+
+sns.boxplot(data=df, x=df['Species'], y=df['PetalLengthCm'])
+
+
+
+
+
+
+
+
+
+
+#EXPLAINATION:
+
+	Q1: What is the Iris dataset?
+A: The Iris dataset is a famous dataset in machine learning containing measurements of 150 iris flowers from three species: Setosa, Versicolor, and Virginica. It includes Sepal Length, Sepal Width, Petal Length, and Petal Width.
+
+Q2: Why do we use df.shape, df.columns, and df.dtypes?
+A:
+
+df.shape shows the size of the data.
+
+df.columns lists the column names.
+
+df.dtypes shows the data type (int, float, object, etc.) of each column.
+
+Q3: What is the purpose of df.describe()?
+A: It gives summary statistics like mean, standard deviation, min, max, and quartiles for each numeric column. It helps to understand data distribution.
+
+Q4: What does a histogram show?
+A: A histogram shows the frequency of values in a column. It helps understand the distribution of a numerical feature.
+
+Q5: What is the difference between sns.histplot() and plt.hist()?
+A:
+
+sns.histplot() adds extra features like KDE lines and is more customizable.
+
+plt.hist() is simpler and comes from Matplotlib.
+
+Q6: What is a boxplot used for?
+A: A boxplot shows the median, quartiles, and potential outliers. It helps detect how data is spread and if there are unusual values.
+
+Q7: How do boxplots help in comparing different species?
+A: They show how each measurement (like petal length) differs between the three iris species. This helps in classification and pattern recognition.
+
+Q8: What kind of data type is Species?
+A: It is a categorical variable (usually of type object or category), representing labels like "Setosa", "Versicolor", etc.
+
+Q9: What is the purpose of data visualization in EDA?
+A: Visualization makes it easier to find patterns, trends, and outliers in data. It also helps us decide how to clean or model the data.
+	
+
+
+
+
+

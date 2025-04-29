@@ -1,0 +1,123 @@
+1.IMPORT REQUIRED LIBRARIES
+
+import pandas as pd
+import numpy as np
+
+2.LOCATE OPEN SOURCE DATA FROM WEB
+DATASET LINK:https://www.kaggle.com
+
+3.LOAD DATASET INTO PANDA DATAFRAME
+df= pd.read_csv("train.csv")
+df
+
+4.DATA PREPROCESSING
+#check dimension of dataframe
+df.shape 
+#check the columns present
+df.columns
+#check total size(rows+column)
+df.size
+#check datatypes of each column
+df.dtypes
+#check for missing values
+df.isnull().sum()
+#check initial statistics
+df.describe()
+#print information about the dataframe
+df.info()
+
+5.DATA FORMATTING AND DATA NORMALIZATION
+#handling missing values
+
+#1.fillna():method which wee can use replace null(NaN) values with someother
+#or we can perform forward fill(ffill),backwardfill(bfill).
+
+#2.interpolate():performs linear interpolation(by deafaut but you can change and replace the null with the result.
+
+#3.dropna():it will drop all the rows that have NaN values
+
+df["Cabin"]=df["Cabin"].replace(to_replace=np.nan, value="unknown")
+df
+df["Age"]= df["Age"].interpolate()
+df
+df.isnull().sum()
+#changing Datatypes
+df.dtypes
+df["Age"]=df["Age"].astype('int64')
+df.dtypes
+
+6.TURNING CATEGORICAL VARIABLE INTO QUANTITIVE
+quantitative_data= pd.get_dummies(df.Embarked,prefix='Embarked')
+quantitative_data
+df= df.join(quantitative_data)
+df
+df.drop(['Embarked'],axis=1,inplace=True)
+df
+------------------------------------------------------------------------------------------
+
+1. Libraries
+pandas: Data analysis, handling tables (DataFrames).
+
+numpy: Fast calculations, handling numerical data.
+
+2. Loading Data
+pd.read_csv("filename.csv") → Load CSV file into DataFrame.
+
+Error if path is wrong: FileNotFoundError.
+
+3. Basic Data Exploration
+Function	Purpose
+df.shape	Rows × Columns
+df.size	Total number of cells
+df.columns	List of all column names
+df.dtypes	Data type of each column
+df.describe()	Basic statistics (mean, std, min, max)
+df.info()	Memory info + non-null counts
+df.isnull().sum()	Number of missing values
+4. Handling Missing Values
+Method	Use
+fillna(value)	Fill missing values with given value
+interpolate()	Estimate missing values (linear by default)
+dropna()	Drop rows with missing values
+Example:
+
+python
+Copy code
+df["Cabin"].replace(np.nan, "unknown")
+df["Age"] = df["Age"].interpolate()
+5. Changing Data Types
+Use .astype('datatype') to change data types.
+
+Example:
+
+python
+Copy code
+df["Age"] = df["Age"].astype('int64')
+6. Converting Categorical to Numerical (One-Hot Encoding)
+Concept	Explanation
+pd.get_dummies(df["column"], prefix='name')	Create binary (0/1) columns for each category
+Drop original column after creating dummies	Avoid duplicate information
+Example:
+
+python
+Copy code
+quantitative_data = pd.get_dummies(df["Embarked"], prefix='Embarked')
+df = df.join(quantitative_data)
+df.drop(["Embarked"], axis=1, inplace=True)
+7. Important Terms
+Term	Meaning
+DataFrame	Table-like data structure
+Missing Values	NaN (Not a Number) in data
+Normalization	Scaling data between 0 and 1
+Standardization	Mean = 0, Standard Deviation = 1
+One-Hot Encoding	Turn categories into binary columns
+⭐ BONUS VIVA TIPS:
+Always mention: "Handling missing values is very important before machine learning."
+
+If unsure about a function, say: "It helps in exploring or cleaning the data for better model performance."
+
+Stay calm; even simple answers are good if said confidently!
+
+✅ Quick 5-Line Summary
+"I imported pandas and numpy. Loaded the dataset using read_csv(). Checked missing values and data types. Handled missing values with fillna() and interpolate(). Converted text data into numbers using get_dummies() for machine learning."
+

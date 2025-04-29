@@ -1,0 +1,137 @@
+# 1. Import required libraries
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+# 2. Load the Dataset
+# If you have downloaded the dataset, put the correct path below
+df = pd.read_csv('boston.csv')   # or 'housing.csv' depending on your file
+df.head()
+
+# 3. Basic Data Understanding
+print(df.shape)         # Shape of the dataset
+print(df.info())        # Data types and null value info
+print(df.describe())    # Statistical summary
+
+# 4. Check for missing values
+print(df.isnull().sum())
+
+# 5. Define Features (X) and Target (y)
+# Assuming 'MEDV' (Median value of owner-occupied homes) is the target
+X = df.drop('MEDV', axis=1)
+y = df['MEDV']
+
+# 6. Split the data into Training and Testing Sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 7. Create and Train the Linear Regression Model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# 8. Predict on Test Data
+y_pred = model.predict(X_test)
+
+# 9. Evaluate the Model
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+
+print(f"Mean Squared Error (MSE): {mse}")
+print(f"R-squared Score (R²): {r2}")
+
+# 10. Visualize Actual vs Predicted
+plt.figure(figsize=(8,6))
+plt.scatter(y_test, y_pred, color='blue')
+plt.xlabel("Actual Prices")
+plt.ylabel("Predicted Prices")
+plt.title("Actual vs Predicted House Prices")
+plt.grid(True)
+plt.show()
+
+
+------------------------------------------------------------------------------------------
+1. What is the Boston Housing Dataset?
+It contains information about houses in Boston, like number of rooms, crime rate, etc.
+
+Total 506 rows (houses) and 14 columns (features).
+
+Goal: Predict the house price (MEDV - Median value of owner homes).
+
+2. What is Linear Regression?
+It is a Supervised Machine Learning algorithm.
+
+It predicts continuous values.
+
+It draws a straight line that best fits the data.
+
+Formula:
+
+𝑦
+=
+𝑚
+𝑥
++
+𝑐
+y=mx+c
+(where m is slope and c is intercept).
+
+3. How did you prepare the data?
+Loaded dataset using pandas.
+
+Checked missing values.
+
+Dropped unnecessary column (Id if present).
+
+Separated Features (X) and Target (y).
+
+4. How did you split the dataset?
+Using train_test_split function from sklearn.
+
+80% training data and 20% testing data.
+
+5. How did you build the model?
+Imported LinearRegression from sklearn.
+
+Trained model using:
+
+python
+Copy code
+model.fit(X_train, y_train)
+6. How did you evaluate the model?
+Mean Squared Error (MSE): Measures how far predictions are from actual values.
+
+R² Score (R-squared): Tells how well model explains the variability of output.
+
+7. Important Metrics:
+Metric	Meaning	Good Value
+MSE	Error between actual vs predicted	Lower is better
+R² Score	How much variation is explained	Closer to 1 is better
+8. What if your R² is low?
+Try:
+
+Feature scaling
+
+Adding/removing features
+
+Trying other algorithms like Random Forest
+
+9. Visualization?
+Plotted Actual vs Predicted values using a scatter plot to check prediction accuracy.
+
+10. Libraries Used?
+pandas: For data handling
+
+numpy: For numerical operations
+
+matplotlib & seaborn: For visualization
+
+sklearn: For machine learning
+
+🔥 Super Tip (for bonus points)
+You can also say:
+
+"In real life, predicting house prices accurately can help banks, real estate companies, and investors make better decisions."

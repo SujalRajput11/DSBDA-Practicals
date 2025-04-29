@@ -1,0 +1,133 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+import seaborn as sns
+
+2.READ CSV INTO DATAFRAME
+
+df=df.read_csv('train.csv')
+df
+
+3.DATA PREPROCESSING
+df.shape
+df.columns
+df.dtypes
+df.info()
+df.isnull()
+df.isnull().sum()
+df.describe()
+
+4.DATA VISUALIZATION
+sns.countplot(df['sex'])
+sns.countplot(df['Survived'])
+
+df['sex'].value_counts().plot(kind='pie',autopct='%.2f')
+
+df['survived'].value_counts().plot(kind='pie',autopct='%.2f')
+
+sns.barplot(df['Survived'],df['Age'])
+sns.barplot(df['Sex'],df['Survived'])
+sns.barplot(df['Sex'],df['Age'], hue=df['Survived'])
+sns.boxplot(df['Sex'],df['Age'])
+sns.boxplot(df['Sex'],df['Age'],df['Survived'])
+pd.crosstab(df['Sex'], df['Survived'])
+pd.crosstab(df['Age'], df['Survived'])
+sns.heatmap(pd.crosstab(df['Sex'],df['Survived']))
+sns.heatmap(pd.crosstab(df['Age'],df['Survived']))
+sns.clustermap(pd.crosstab(df['Sex'],df['Survived']))b
+sns.clustermap(pd.crosstab(df['Age'],df['Survived']))b
+
+------------------------------------------------------------------------------------------
+
+1. Importing Required Libraries
+python
+Copy code
+import pandas as pd              # for handling tabular data
+import numpy as np               # for numerical operations
+import matplotlib.pyplot as plt  # for plotting graphs
+%matplotlib inline               # to display plots inside Jupyter Notebook
+import seaborn as sns            # for beautiful data visualizations
+🔹 2. Reading CSV into DataFrame
+python
+Copy code
+df = pd.read_csv('train.csv')    # Load Titanic dataset from CSV file into a DataFrame
+df                               # Display the data
+📌 Note: You had a small error in your code — it should be pd.read_csv, not df.read_csv.
+
+🔹 3. Data Preprocessing
+python
+Copy code
+df.shape                  # Shows number of rows and columns
+df.columns                # Lists all column names
+df.dtypes                 # Shows data types of each column
+df.info()                 # Detailed info: types, nulls, etc.
+df.isnull()               # Checks for missing values (True/False)
+df.isnull().sum()         # Counts how many missing values per column
+df.describe()             # Basic statistics (mean, std, min, max, etc.)
+🔹 4. Data Visualization
+python
+Copy code
+sns.countplot(df['sex'])                  # Bar plot of count of each gender
+sns.countplot(df['Survived'])            # Count of survived vs not survived
+
+df['sex'].value_counts().plot(kind='pie', autopct='%.2f')        # Pie chart for gender
+df['survived'].value_counts().plot(kind='pie', autopct='%.2f')   # Pie chart for survival
+
+sns.barplot(df['Survived'], df['Age'])              # Avg age per survival status
+sns.barplot(df['Sex'], df['Survived'])              # Survival count per gender
+sns.barplot(df['Sex'], df['Age'], hue=df['Survived'])  # Gender vs Age split by survival
+
+sns.boxplot(df['Sex'], df['Age'])                   # Age distribution per gender
+sns.boxplot(df['Sex'], df['Age'], df['Survived'])   # Age, gender, and survival
+
+pd.crosstab(df['Sex'], df['Survived'])              # Table: gender vs survival
+pd.crosstab(df['Age'], df['Survived'])              # Table: age vs survival
+
+sns.heatmap(pd.crosstab(df['Sex'], df['Survived']))  # Heatmap version of crosstab
+sns.heatmap(pd.crosstab(df['Age'], df['Survived']))
+
+sns.clustermap(pd.crosstab(df['Sex'], df['Survived']))    # Clustering map
+sns.clustermap(pd.crosstab(df['Age'], df['Survived']))
+📌 Note: sns.clustermap(...))b at the end has a typo (b) — remove that to avoid an error.
+
+✅ Viva Questions & Answers
+1. Q: What is the purpose of df.info()?
+A: It provides a summary of the DataFrame including data types, non-null values, and memory usage.
+
+2. Q: Why do we use isnull().sum()?
+A: To count missing values in each column, which helps in data cleaning.
+
+3. Q: What does a countplot() show?
+A: It shows the count of unique values in a categorical column (like gender or survival).
+
+4. Q: What is the difference between barplot and boxplot?
+Barplot: Shows average values (e.g., average age).
+
+Boxplot: Shows distribution, including median, quartiles, and outliers.
+
+5. Q: What does a heatmap do in this context?
+A: It visualizes frequency tables (like cross-tabs) using colors to indicate intensity of values.
+
+6. Q: What is clustermap used for?
+A: It clusters similar rows and columns in a heatmap, helpful for pattern recognition.
+
+7. Q: Why is describe() used?
+A: To quickly get summary statistics of numeric columns (like age or fare).
+
+8. Q: What is the use of value_counts() with plot(kind='pie')?
+A: It shows the proportion of each category in a column as a pie chart.
+
+9. Q: How would you handle missing data in this dataset?
+A: Options include:
+
+Dropping missing rows (df.dropna())
+
+Filling with mean/median/mode (df.fillna(df['Age'].mean()))
+
+Using more advanced imputation methods
+
+10. Q: What's the main insight you get from Sex vs Survived plot?
+A: Usually, a higher proportion of females survived compared to males.
+
+

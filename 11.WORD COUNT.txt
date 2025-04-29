@@ -1,0 +1,114 @@
+!pip install mrjob
+
+%%writefile wordcount.py
+from mrjob.job import MRJob
+import re
+
+class wordc(MRJob):
+    def mapper(self, _, line):
+        words = re.findall(r'\w+', line.lower())
+        for word in words:
+            yield (word, 1)
+
+    def reducer(self, key, values):
+        yield (key, sum(values))
+
+if __name__ == '__main__':
+    wordc.run()
+
+%%writefile input.txt
+Hello world
+Hello Hadoop
+MapReduce is fun
+Hadoop is powerful
+
+!python wordcount.py input.txt
+-----------------------------------------------------------------------------------------
+%%writefile wordcount.py
+This Jupyter/IPython command saves the following Python code into a file named wordcount.py.
+
+from mrjob.job import MRJob
+Imports the MRJob class from the mrjob package. It allows writing MapReduce jobs in Python.
+
+import re
+Imports Python’s regular expression module, used for pattern matching (text processing).
+
+class wordc(MRJob):
+Defines a class wordc that inherits from MRJob. The name is short for "word count."
+
+def mapper(self, _, line):
+This is the mapper function. It receives:
+
+_: a placeholder for the key (ignored here, usually line number)
+
+line: one line of text from the input file
+
+words = re.findall(r'\w+', line.lower())
+This line does 2 things:
+
+Converts the line to lowercase.
+
+Uses a regular expression \w+ to find all words (alphanumeric sequences) in the line.
+
+This removes punctuation and ensures all words are in lowercase.
+
+for word in words: yield (word, 1)
+For each word found, emit the word and the count 1.
+
+This is the Map step — it tells the system that each word occurred once.
+
+def reducer(self, key, values):
+The reducer function takes:
+
+key: a unique word
+
+values: a list of all the 1s for that word
+
+yield (key, sum(values))
+Sums up all the values (all 1s) for each word and emits the final count.
+
+For example, if the word "hadoop" appears twice, it yields ('hadoop', 2).
+
+if __name__ == '__main__': wordc.run()
+This is the main program execution block. It runs the MapReduce job by calling .run() on the class.
+
+✅ Input File (input.txt)
+kotlin
+Copy code
+Hello world
+Hello Hadoop
+MapReduce is fun
+Hadoop is powerful
+This is the data the program reads line by line and counts the frequency of each word.
+
+!python wordcount.py input.txt
+This runs the MapReduce job using the input file input.txt.
+
+🎓 Possible Viva Questions & Answers
+1. Q: What is the purpose of this program?
+A: It counts how many times each word appears in the given text file.
+
+2. Q: Why do we use re.findall(r'\w+', line.lower())?
+A: It extracts all words while removing punctuation and converting text to lowercase for consistency.
+
+3. Q: What does the mapper emit?
+A: It emits (word, 1) for each word found in a line.
+
+4. Q: What does the reducer do?
+A: It receives all counts for each word and sums them to get the total count.
+
+5. Q: What if a word appears in both lowercase and uppercase?
+A: All words are converted to lowercase in the mapper, so they are treated the same.
+
+6. Q: Why do we use yield instead of return?
+A: yield is used in generator functions to output multiple values one by one during streaming.
+
+7. Q: Can this code run on a large dataset?
+A: Yes, because it uses mrjob, which supports running on Hadoop, Amazon EMR, and more.
+
+8. Q: What is MapReduce?
+A: It's a programming model for processing large datasets using a map function to produce key-value pairs and a reduce function to aggregate them.
+
+9. Q: Why is _ used as the first argument in the mapper?
+A: Because the key (usually line number) is not needed, _ is a convention for unused variables.
+

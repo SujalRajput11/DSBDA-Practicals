@@ -1,0 +1,182 @@
+%%writefile avg_weather.py
+from mrjob.job import MRJob
+
+class MRAverageWeather(MRJob):
+
+    def mapper(self, _, line):
+        if line.startswith('Date'):  # Skip header
+            return
+
+        columns = line.split()
+        if len(columns) >= 4:
+            try:
+                temperature = float(columns[1])
+                dew_point = float(columns[2])
+                wind_speed = float(columns[3])
+                yield ("weather", (temperature, dew_point, wind_speed, 1))
+            except ValueError:
+                pass
+
+    def reducer(self, key, values):
+        total_temp = 0
+        total_dew_point = 0
+        total_wind_speed = 0
+        count = 0
+
+        for temperature, dew_point, wind_speed, _ in values:
+            total_temp += temperature
+            total_dew_point += dew_point
+            total_wind_speed += wind_speed
+            count += 1
+
+        if count > 0:
+            avg_temp = total_temp / count
+            avg_dew_point = total_dew_point / count
+            avg_wind_speed = total_wind_speed / count
+            yield ("Average", (avg_temp, avg_dew_point, avg_wind_speed))
+        else:
+            yield ("Average", (None, None, None))
+
+if __name__ == '__main__':
+    MRAverageWeather.run()
+
+%%writefile weather.txt
+Date       Temperature DewPoint WindSpeed
+2023-01-01 12.3         5.4      15
+2023-01-02 14.2         6.1      18
+2023-01-03 13.7         5.8      12
+2023-01-04 15.0         7.0      20
+
+!python avg_weather.py weather.txt
+------------------------------------------------------------------------------------------
+
+%%writefile avg_weather.py
+Saves the following Python code into a file called avg_weather.py.
+
+from mrjob.job import MRJob
+This imports the MRJob class from the mrjob module, which helps write MapReduce programs in Python easily.
+
+class MRAverageWeather(MRJob):
+Defines a class MRAverageWeather that inherits from MRJob. It will contain the mapper and reducer functions to process weather data.
+
+def mapper(self, _, line):
+This is the mapper function, which processes each line of the input file.
+
+_ means the line number is ignored.
+
+line is each row (line) from the input file.
+
+if line.startswith('Date'): return
+This skips the header row in the CSV file.
+
+columns = line.split()
+Splits the line into columns by whitespace (spaces or tabs).
+
+if len(columns) >= 4:
+Ensures the line has at least 4 columns: Date, Temperature, DewPoint, WindSpeed.
+
+try:
+Tries to convert values to float to ensure they're valid numbers.
+
+python
+Copy code
+temperature = float(columns[1])
+dew_point = float(columns[2])
+wind_speed = float(columns[3])
+These extract and convert the temperature, dew point, and wind speed from the line.
+
+python
+Copy code
+yield ("weather", (temperature, dew_point, wind_speed, 1))
+This emits a key-value pair where the key is "weather" and the value is a tuple of temperature, dew point, wind speed, and count 1.
+
+except ValueError: pass
+If any value is not a number (e.g., 'N/A'), it just skips that line silently.
+
+def reducer(self, key, values):
+This is the reducer function, which receives all the values grouped by key (in this case, just "weather").
+
+Initialize totals
+python
+Copy code
+total_temp = 0
+total_dew_point = 0
+total_wind_speed = 0
+count = 0
+Keeps track of the sum of each metric and the number of entries.
+
+for temperature, dew_point, wind_speed, _ in values:
+Goes through each tuple passed from the mapper.
+
+Add values to totals:
+python
+Copy code
+total_temp += temperature
+total_dew_point += dew_point
+total_wind_speed += wind_speed
+count += 1
+Calculate Averages:
+If at least one valid record was found:
+
+python
+Copy code
+avg_temp = total_temp / count
+avg_dew_point = total_dew_point / count
+avg_wind_speed = total_wind_speed / count
+Emit the results:
+python
+Copy code
+yield ("Average", (avg_temp, avg_dew_point, avg_wind_speed))
+Returns a key "Average" with the tuple of average values.
+
+If no valid data was found:
+
+python
+Copy code
+yield ("Average", (None, None, None))
+if __name__ == '__main__':
+Standard Python entry point to run the script when executed directly.
+
+MRAverageWeather.run()
+Runs the MapReduce job.
+
+✅ Sample Input File: weather.txt
+yaml
+Copy code
+Date       Temperature DewPoint WindSpeed
+2023-01-01 12.3         5.4      15
+2023-01-02 14.2         6.1      18
+2023-01-03 13.7         5.8      12
+2023-01-04 15.0         7.0      20
+This is the sample weather data to be processed.
+
+!python avg_weather.py weather.txt
+Executes the script using the file weather.txt as input.
+
+🎓 External Viva Questions & Answers
+1. Q: What is the purpose of this MapReduce program?
+A: It calculates the average temperature, dew point, and wind speed from a weather dataset.
+
+2. Q: Why is line.startswith("Date") used in the mapper?
+A: To skip the header row which contains column names and not actual data.
+
+3. Q: What happens in the mapper function?
+A: Each line is split into values. It extracts temperature, dew point, and wind speed, and emits them with a count of 1.
+
+4. Q: What does the reducer do?
+A: It adds all the values from the mapper and calculates the average for each metric.
+
+5. Q: What does the value (temperature, dew_point, wind_speed, 1) represent?
+A: These are the numeric values of interest and the count 1 used for averaging.
+
+6. Q: Why do we need the count 1 in the emitted tuple?
+A: To keep track of how many valid records were processed so we can compute the average.
+
+7. Q: What would happen if the file had invalid numeric values like 'N/A'?
+A: The code will skip those lines due to the try-except block around float() conversion.
+
+8. Q: How is MapReduce helpful here compared to regular Python?
+A: MapReduce allows this script to scale for large datasets processed in parallel across clusters.
+
+9. Q: Can this code be used with Hadoop or AWS?
+A: Yes, mrjob supports running MapReduce jobs locally, on Hadoop, and in AWS EMR.

@@ -1,0 +1,84 @@
+1.IMPORTING REQUIRED LIBRARIES
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+import seaborn as sns
+
+2.Reading csv into Dataframe
+df=pd.read_csv('iris.csv')
+df
+
+3.Data preprocessing
+df.shape
+df.columns
+df.dtypes
+df.info()
+df.describe()
+df.isnull()
+sns.relplot(data=df,x='SepalWidthCm',y='SepalLengthCm',hue='Species')
+sns.relplot(data=df,x='PetalLengthCm',y='PetalWidthCm',hue='Species')
+sns.pairplot(df,hue='Species')
+
+plt.figure(figsize=(15,10))
+plt.subplot(2,2,1)
+sns.boxplot(data=df,x='Species',y='PetalLengthCm')
+
+plt.subplot(2,2,2)
+sns.boxplot(data=df,x='Species',y='PetalWidthCm')
+
+plt.subplot(2,2,3)
+sns.boxplot(data=df,x='Species',y='SepalLengthCm')
+
+plt.subplot(2,2,4)
+sns.boxplot(data=df,x='Species',y='SepalWidthCm')
+
+sns.boxplot(data=df).set_title("Distribution of Sepal-Length,Sepal-Width,Petal-Length,Petal-Width")
+
+df.corr(numeric_only=True)
+
+plt.subplots(figsize=(8,8))
+sns.heatmap(df.corr(numeric_only=True)
+,annot=True,fmt="f").set_title('Corelation of attribute')
+x=df.iloc[:,0:4].values
+x
+y=df.iloc[:,4].values
+y
+
+4.LABEL ENCODING
+from sklearn.preprocessing import LabelEncoder
+le=LabelEncoder()
+y=le.fit_transform(y)
+y
+
+5.SPLITTING DATA INTO 70% TRAINING AND 30% TESTING
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.3,random_state=42)
+x_train
+
+x_train.shape
+x_test
+x_test.shape
+y_train
+y_train.shape
+y_test
+y_test.shape
+
+6.INITIALIZING NAIVE BAYES MODEL AND TRAINING IT
+
+from sklearn.naive_bayes import GaussianNB
+model=GaussianNB()
+model.fit(x_train,y_train)
+
+7.PREDICTION
+prediction=model.predict(x_test)
+prediction
+
+
+
+
+
+
+
+
+
