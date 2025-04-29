@@ -1,0 +1,694 @@
+Unit I Introduction to Data Science and Big Data 
+
+Basics and need of Data Science and Big Data, Applications of Data Science, Data explosion, 5 V’s
+of Big Data, Relationship between Data Science and Information Science, Business intelligence versus
+Data Science, Data Science Life Cycle, Data: Data Types, Data Collection. Need of Data wrangling,
+Methods: Data Cleaning, Data Integration, Data Reduction, Data Transformation, Data Discretization.
+
+1. Basics and Need of Data Science and Big Data
+Data Science is an interdisciplinary field that uses statistical methods, algorithms, and machine learning techniques to extract insights and knowledge from structured and unstructured data.
+
+Big Data refers to datasets that are too large or complex for traditional data-processing tools to handle effectively.
+
+Need: With the rapid growth of digital data (from social media, sensors, transactions, etc.), organizations need Data Science to analyze and derive value from this data to make informed decisions, predict trends, and optimize processes.
+
+2. Applications of Data Science
+Healthcare: Disease prediction, personalized medicine.
+
+Finance: Fraud detection, credit scoring.
+
+Retail: Customer segmentation, recommendation engines.
+
+Marketing: Sentiment analysis, customer lifetime value.
+
+Transportation: Route optimization, self-driving vehicles.
+
+Sports: Performance analysis, player evaluation.
+
+3. Data Explosion
+Refers to the exponential increase in data generation due to digitization, IoT, mobile devices, and social media.
+
+Results in vast amounts of data being produced every second, necessitating advanced tools and techniques to manage and analyze it.
+
+4. The 5 V’s of Big Data
+Volume – Amount of data generated.
+
+Velocity – Speed of data generation and processing.
+
+Variety – Different types of data (text, images, video, etc.).
+
+Veracity – Trustworthiness and quality of the data.
+
+Value – Insights and benefits gained from analyzing data.
+
+5. Relationship Between Data Science and Information Science
+Information Science deals with the collection, classification, storage, retrieval, and dissemination of information.
+
+Data Science extends this by applying algorithms and statistical models to derive actionable insights.
+
+Overlap: Both involve managing and making sense of data, but Data Science is more focused on predictive analytics and decision-making.
+
+6. Business Intelligence (BI) vs Data Science
+
+Feature	Business Intelligence	Data Science
+Focus	Descriptive analytics	Predictive and prescriptive analytics
+Data Usage	Structured historical data	Structured and unstructured data
+Tools	Dashboards, OLAP, reports	ML models, statistical programming
+Goal	Understanding past performance	Forecasting and decision optimization
+7. Data Science Life Cycle
+Problem Definition
+
+Data Collection
+
+Data Preparation (Wrangling)
+
+Exploratory Data Analysis
+
+Modeling (ML Algorithms)
+
+Evaluation
+
+Deployment
+
+Monitoring and Maintenance
+
+8. Data: Types and Collection
+Data Types:
+
+Structured (e.g., SQL databases),
+
+Unstructured (e.g., videos, emails),
+
+Semi-structured (e.g., XML, JSON).
+
+Collection Methods:
+
+Surveys, Web scraping, IoT devices, APIs, Transaction logs.
+
+9. Need for Data Wrangling
+Ensures data quality and consistency.
+
+Prepares raw data for analysis by handling missing values, correcting errors, and ensuring correct format.
+
+10. Data Wrangling Methods
+Data Cleaning: Handling missing values, correcting inconsistent entries.
+
+Data Integration: Combining data from multiple sources into a cohesive dataset.
+
+Data Reduction: Reducing volume without losing valuable information (e.g., PCA, sampling).
+
+Data Transformation: Normalization, encoding, and scaling to prepare data for modeling.
+
+Data Discretization: Converting continuous data into categorical bins (e.g., age groups).
+
+------------------------------------------------------------------------------------------
+Unit II Statistical Inference 07 Hours
+Need of statistics in Data Science and Big Data Analytics, Measures of Central Tendency: Mean,
+Median, Mode, Mid-range. Measures of Dispersion: Range, Variance, Mean Deviation, Standard
+Deviation. Bayes theorem, Basics and need of hypothesis and hypothesis testing, Pearson Correlation,
+Sample Hypothesis testing, Chi-Square Tests, t-test.
+
+1. Need of Statistics in Data Science and Big Data Analytics
+Statistics provides the foundation for:
+
+Summarizing and understanding data distributions.
+
+Making inferences and predictions from sample data.
+
+Identifying patterns, trends, and outliers.
+
+Building and validating machine learning models.
+
+In Big Data, statistics helps to:
+
+Reduce dimensionality,
+
+Handle uncertainty,
+
+Enable evidence-based decision-making.
+
+2. Measures of Central Tendency
+These describe the "center" or "average" of a dataset:
+
+Mean: Sum of all values divided by the number of values.
+
+Median: Middle value when data is ordered.
+
+Mode: Most frequently occurring value.
+
+Mid-range: Average of the minimum and maximum values.
+
+3. Measures of Dispersion
+These indicate how spread out the data is:
+
+Range: Difference between the maximum and minimum values.
+
+Variance: Average of the squared deviations from the mean.
+
+Mean Deviation (MAD): Average of the absolute deviations from the mean.
+
+Standard Deviation: Square root of the variance; shows spread in original units.
+
+4. Bayes’ Theorem
+A foundational concept in probability that describes the probability of an event based on prior knowledge.
+
+𝑃
+(
+𝐴
+∣
+𝐵
+)
+=
+𝑃
+(
+𝐵
+∣
+𝐴
+)
+⋅
+𝑃
+(
+𝐴
+)
+𝑃
+(
+𝐵
+)
+P(A∣B)= 
+P(B)
+P(B∣A)⋅P(A)
+​
+ 
+Use in Data Science:
+
+Spam filtering, recommendation systems, classification models (e.g., Naïve Bayes).
+
+5. Hypothesis and Hypothesis Testing
+Hypothesis: An assumption or claim about a population parameter.
+
+Types:
+
+Null Hypothesis (H₀): No effect or difference.
+
+Alternative Hypothesis (H₁): There is an effect or difference.
+
+Need: Allows data scientists to make data-driven decisions and assess model assumptions.
+
+6. Pearson Correlation
+Measures the linear relationship between two variables.
+
+Value ranges from -1 (perfect negative) to +1 (perfect positive), with 0 indicating no linear correlation.
+
+7. Sample Hypothesis Testing
+Involves selecting a sample from a population to test hypotheses.
+
+Steps:
+
+State hypotheses.
+
+Choose significance level (α).
+
+Calculate test statistic.
+
+Make decision based on p-value or critical value.
+
+8. Chi-Square Tests
+Used for categorical data:
+
+Chi-Square Test of Independence: Tests if two variables are independent.
+
+Chi-Square Goodness-of-Fit Test: Tests if a sample distribution fits a theoretical distribution.
+
+9. t-Test
+Compares the means of two groups.
+
+Types:
+
+One-sample t-test: Compare sample mean to a known value.
+
+Two-sample t-test: Compare means of two independent samples.
+
+Paired t-test: Compare means from the same group at different times.
+------------------------------------------------------------------------------------------
+
+
+Unit III Big Data Analytics Life Cycle 07 Hours
+Introduction to Big Data, sources of Big Data, Data Analytic Lifecycle: Introduction, Phase 1:
+Discovery, Phase 2: Data Preparation, Phase 3: Model Planning, Phase 4: Model Building, Phase 5:
+Communication results, Phase 6: Operationalize
+
+
+1. Introduction to Big Data
+Big Data refers to extremely large datasets that are complex, fast-growing, and varied.
+
+Traditional data processing tools struggle to handle Big Data efficiently.
+
+Big Data is often characterized by the 5 V’s: Volume, Velocity, Variety, Veracity, and Value.
+
+2. Sources of Big Data
+Social Media: Twitter, Facebook, Instagram generate vast unstructured text, image, and video data.
+
+Sensors & IoT Devices: Smart homes, industrial sensors, wearables.
+
+Web Logs & Clickstreams: User activity on websites and mobile apps.
+
+Transactional Data: E-commerce purchases, banking records.
+
+Machine-generated Data: Logs from servers, manufacturing data.
+
+Multimedia Data: Audio, video from surveillance, entertainment.
+
+3. Data Analytic Life Cycle – Introduction
+The Big Data Analytics Life Cycle is a structured process for managing data science and analytics projects. It ensures systematic handling from data collection to delivering actionable insights.
+
+4. Phases of the Big Data Analytics Life Cycle
+Phase 1: Discovery
+Define the business problem or analytics goal.
+
+Identify key stakeholders and objectives.
+
+Assess data sources, availability, and tools required.
+
+Deliverables: Problem definition document, resource plan.
+
+Phase 2: Data Preparation
+Collect, explore, clean, and format data.
+
+May involve data wrangling tasks such as:
+
+Handling missing values,
+
+Data normalization,
+
+Merging datasets.
+
+Deliverables: Clean dataset ready for analysis.
+
+Phase 3: Model Planning
+Determine the analytics techniques to use (e.g., regression, clustering).
+
+Choose appropriate tools (e.g., R, Python, Spark).
+
+Create a blueprint of the data flow and model architecture.
+
+Deliverables: Analytics plan and modeling strategy.
+
+Phase 4: Model Building
+Develop and train predictive or descriptive models.
+
+Split data into training/testing sets.
+
+Fine-tune algorithms and validate model performance.
+
+Deliverables: Trained model(s), evaluation metrics (e.g., accuracy, precision).
+
+Phase 5: Communicate Results
+Translate technical findings into business insights.
+
+Use visualizations (charts, dashboards) and reports.
+
+Engage stakeholders for feedback and decisions.
+
+Deliverables: Presentation/report summarizing insights and implications.
+
+Phase 6: Operationalize
+Deploy the model into production environment.
+
+Set up monitoring for performance and retraining.
+
+Automate workflows if needed.
+
+Deliverables: Finalized system, documentation, ongoing maintenance plan.
+
+-----------------------------------------------------------------------------------------
+Unit IV Predictive Big Data Analytics with Python 07 Hours
+Introduction, Essential Python Libraries, Basic examples. Data Preprocessing: Removing
+Duplicates, Transformation of Data using function or mapping, replacing values, Handling Missing
+Data. Analytics Types: Predictive, Descriptive and Prescriptive. Association Rules: Apriori
+Algorithm, FP growth. Regression: Linear Regression, Logistic Regression. Classification: Naïve
+Bayes, Decision Trees. Introduction to Scikit-learn, Installations, Dataset, matplotlib, filling missing
+values, Regression and Classification using Scikit-learn
+
+1. Introduction
+Predictive Analytics uses statistical techniques and machine learning to forecast future outcomes based on historical data.
+
+Python is a widely-used programming language in data science due to its simplicity and strong ecosystem of libraries for analytics.
+
+2. Essential Python Libraries
+NumPy: Efficient array operations and numerical computing.
+
+Pandas: Data manipulation and analysis using DataFrames.
+
+Matplotlib / Seaborn: Visualization of data.
+
+Scikit-learn: Machine learning algorithms and tools.
+
+SciPy: Advanced scientific and technical computing.
+
+3. Basic Python Examples
+Reading and writing CSV files using Pandas.
+
+Basic plotting with Matplotlib.
+
+Using NumPy for statistical summaries and matrix operations.
+
+4. Data Preprocessing
+Essential for cleaning and preparing data before analysis:
+
+Removing Duplicates: Using df.drop_duplicates().
+
+Transformation Using Functions or Mapping: Apply custom or built-in functions using apply(), map().
+
+Replacing Values: Using replace() to correct or unify values.
+
+Handling Missing Data:
+
+Detect with isnull() or info().
+
+Fill missing values: fillna().
+
+Drop missing rows/columns: dropna().
+
+5. Types of Analytics
+Descriptive Analytics: Summarizes historical data (e.g., dashboards).
+
+Predictive Analytics: Uses historical data to predict future outcomes (e.g., regression).
+
+Prescriptive Analytics: Suggests actions using optimization and simulation.
+
+6. Association Rules
+Used to discover relationships between variables in large datasets:
+
+Apriori Algorithm: Identifies frequent itemsets and derives association rules.
+
+FP-Growth (Frequent Pattern Growth): Faster, memory-efficient algorithm for mining frequent itemsets.
+
+7. Regression Techniques
+Linear Regression:
+
+Predicts a continuous output.
+
+Model: 
+𝑦
+=
+𝑚
+𝑥
++
+𝑏
+y=mx+b
+
+Logistic Regression:
+
+Used for binary classification.
+
+Outputs a probability and maps it to a class using a threshold.
+
+8. Classification Techniques
+Naïve Bayes:
+
+Probabilistic classifier based on Bayes’ Theorem.
+
+Assumes features are independent.
+
+Decision Trees:
+
+Flowchart-like model where data is split on feature values.
+
+Easy to interpret and visualize.
+
+9. Introduction to Scikit-learn
+A powerful and easy-to-use machine learning library.
+
+Includes tools for:
+
+Preprocessing,
+
+Regression,
+
+Classification,
+
+Model evaluation and selection.
+
+10. Using Scikit-learn
+Installation: pip install scikit-learn
+
+Datasets: Built-in datasets like load_iris(), load_boston(), or load your own using Pandas.
+
+matplotlib: Used to visualize data distributions and model outputs.
+
+Handling Missing Values:
+
+SimpleImputer for filling missing values with mean, median, etc.
+
+Regression and Classification:
+
+Import model: from sklearn.linear_model import LinearRegression
+
+Fit model: model.fit(X_train, y_train)
+
+Predict: model.predict(X_test)
+
+Evaluate: Accuracy, MSE, confusion matrix, etc.
+
+-------------------------------------------------------------------------------------------
+
+Unit V Big Data Analytics and Model Evaluation 07 Hours
+Clustering Algorithms: K-Means, Hierarchical Clustering, Time-series analysis. Introduction to
+Text Analysis: Text-preprocessing, Bag of words, TF-IDF and topics. Need and Introduction to social
+network analysis, Introduction to business analysis. Model Evaluation and Selection: Metrics for
+Evaluating Classifier Performance, Holdout Method and Random Subsampling, Parameter Tuning and
+Optimization, Result Interpretation, Clustering and Time-series analysis using Scikit-learn,
+sklearn.metrics, Confusion matrix, AUC-ROC Curves, Elbow plot.
+
+1. Clustering Algorithms
+a. K-Means Clustering
+Partitions data into K clusters by minimizing intra-cluster variance.
+
+Uses centroid-based grouping.
+
+Iterative process: assign points → update centroids → repeat.
+
+Best for large datasets.
+
+b. Hierarchical Clustering
+Builds a tree (dendrogram) of clusters.
+
+Two types:
+
+Agglomerative (bottom-up)
+
+Divisive (top-down)
+
+Does not require the number of clusters beforehand.
+
+c. Time-Series Analysis
+Analyzes sequential data over time.
+
+Applications: stock prices, weather data, sales forecasting.
+
+Focuses on trend, seasonality, and noise.
+
+2. Introduction to Text Analysis
+Text Preprocessing:
+
+Tokenization, stopword removal, stemming/lemmatization.
+
+Bag of Words (BoW):
+
+Converts text into a matrix of word counts.
+
+TF-IDF (Term Frequency–Inverse Document Frequency):
+
+Weighs words based on their importance in a document relative to all documents.
+
+Topic Modeling (e.g., LDA):
+
+Uncovers hidden thematic structures in text data.
+
+3. Social Network Analysis (SNA)
+Need: To analyze relationships and interactions in social structures (e.g., Facebook, Twitter).
+
+Applications:
+
+Influence detection,
+
+Community detection,
+
+Information diffusion.
+
+Metrics: Degree centrality, betweenness centrality, clustering coefficient.
+
+4. Introduction to Business Analysis
+Uses data to inform strategic and operational business decisions.
+
+Involves descriptive and predictive analytics, dashboards, and key performance indicators (KPIs).
+
+5. Model Evaluation and Selection
+a. Metrics for Classifier Performance
+Accuracy: Correct predictions / total predictions.
+
+Precision: True Positives / (True Positives + False Positives).
+
+Recall (Sensitivity): True Positives / (True Positives + False Negatives).
+
+F1 Score: Harmonic mean of precision and recall.
+
+AUC-ROC Curve: Evaluates performance across thresholds; good for imbalanced datasets.
+
+b. Holdout Method and Random Subsampling
+Holdout: Split data into training and testing sets (e.g., 70/30).
+
+Random Subsampling: Multiple random splits to evaluate consistency.
+
+c. Parameter Tuning and Optimization
+Grid Search / Random Search: Test different hyperparameter combinations.
+
+Cross-validation (e.g., k-fold): Ensures stability and generalization.
+
+d. Result Interpretation
+Translate model results into business or practical insights.
+
+Focus on trade-offs (e.g., precision vs recall) depending on the use case.
+
+6. Practical with Scikit-learn
+Clustering:
+
+KMeans, AgglomerativeClustering in sklearn.cluster.
+
+Time-Series:
+
+Use Pandas for indexing time-based data.
+
+Evaluation Tools:
+
+sklearn.metrics: accuracy_score, precision_score, confusion_matrix, roc_auc_score.
+
+Confusion Matrix:
+
+2x2 table showing TP, FP, FN, TN.
+
+AUC-ROC Curve:
+
+Plots True Positive Rate vs False Positive Rate.
+
+Elbow Plot:
+
+Used to choose the optimal number of clusters in K-means.
+
+Plot cost (inertia) vs number of clusters.
+
+
+------------------------------------------------------------------------------------------
+
+Unit VI Data Visualization and Hadoop 07 Hours
+Introduction to Data Visualization, Challenges to Big data visualization, Types of data visualization,
+Data Visualization Techniques, Visualizing Big Data, Tools used in Data Visualization, Hadoop
+ecosystem, Map Reduce, Pig, Hive, Analytical techniques used in Big data visualization. Data
+Visualization using Python: Line plot, Scatter plot, Histogram, Density plot, Box- plot.
+
+1. Introduction to Data Visualization
+Data visualization is the graphical representation of information and data using visual elements like charts, graphs, and maps.
+
+Helps in understanding trends, patterns, and outliers in data.
+
+Essential in Big Data analytics for interpreting large-scale complex data.
+
+2. Challenges in Big Data Visualization
+Scalability: Handling millions/billions of records.
+
+Speed: Real-time rendering of data streams.
+
+Variety: Visualizing structured, semi-structured, and unstructured data.
+
+Interactivity: Designing responsive and interactive visuals for user exploration.
+
+Storage and processing: Integrating with distributed systems like Hadoop/Spark.
+
+3. Types of Data Visualization
+Univariate: Single variable (e.g., bar chart, histogram).
+
+Bivariate: Two variables (e.g., scatter plot).
+
+Multivariate: More than two variables (e.g., heatmaps, pair plots).
+
+Time-series: Trends over time (e.g., line chart).
+
+Geospatial: Map-based visualization (e.g., choropleth map).
+
+Network: Relationship and graph visualizations.
+
+4. Data Visualization Techniques
+Summarization (mean, median)
+
+Trend analysis (moving averages)
+
+Outlier detection (box plots)
+
+Clustering patterns (color mapping)
+
+Dimensionality reduction (PCA visualizations)
+
+5. Visualizing Big Data
+Use of distributed systems for rendering (e.g., D3.js with Spark backend).
+
+Sampling, aggregation, and filtering are often needed to visualize huge datasets.
+
+Interactive dashboards (e.g., Tableau, Power BI, Dash).
+
+6. Tools Used in Data Visualization
+Python Libraries: Matplotlib, Seaborn, Plotly, Bokeh, Altair.
+
+Dashboard Tools: Tableau, Power BI, Google Data Studio.
+
+Big Data Visualization Tools: Kibana, Apache Superset, Grafana.
+
+Web-Based: D3.js, Chart.js, Google Charts.
+
+7. Hadoop Ecosystem
+Hadoop: An open-source framework for distributed storage (HDFS) and processing (MapReduce).
+
+Key Components:
+HDFS (Hadoop Distributed File System): For data storage across multiple nodes.
+
+MapReduce: Programming model for parallel data processing.
+
+Pig: A high-level scripting language (Pig Latin) for data flow tasks.
+
+Hive: SQL-like interface for querying large datasets stored in HDFS.
+
+8. Analytical Techniques in Big Data Visualization
+Aggregation (summarizing big data into manageable insights)
+
+Data mining and pattern recognition
+
+Real-time stream visualization
+
+Cluster-based segmentation
+
+Trend forecasting and anomaly detection
+
+9. Data Visualization Using Python
+a. Line Plot
+Shows trends over time or sequences.
+
+matplotlib.pyplot.plot()
+
+b. Scatter Plot
+Visualizes correlation between two continuous variables.
+
+plt.scatter(x, y)
+
+c. Histogram
+Represents distribution of a numeric variable.
+
+plt.hist(data, bins=n)
+
+d. Density Plot
+Smooth version of a histogram.
+
+seaborn.kdeplot(data)
+
+e. Box Plot
+Displays median, quartiles, and outliers.
+
+seaborn.boxplot(data=data)
